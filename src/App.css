@@ -4,3 +4,8 @@
 .logo{
     padding-right: 13px;
 }
+.center{
+    margin: 0 auto;
+    border-radius: 50px;
+    padding-top: 5px;
+}
