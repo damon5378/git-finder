@@ -18,3 +18,10 @@
     grid-gap: 1rem;
     padding-top: 20px;
 }
+.form{
+    margin-top: 15px;
+}
+.search-input{
+    margin-bottom: 10px;
+    width: 100%;
+}
