@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,QACI,UACJ,CACA,MACI,kBACJ,CACA,QACI,aAAc,CACd,kBAAmB,CACnB,eACJ","file":"main.b18ace8b.chunk.css","sourcesContent":[".navbar{\r\n    color: #fff;\r\n}\r\n.logo{\r\n    padding-right: 13px;\r\n}\r\n.center{\r\n    margin: 0 auto;\r\n    border-radius: 50px;\r\n    padding-top: 5px;\r\n}"]}
