@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/layout/Navbar';
 
-function App() {
-  return (
+class App extends React.Component {
+  render() {
+    return (
     <div className="App">
-      <header className="App-header">
-        Test update
-      </header>
+    <Navbar title="Github Finder" icon="fab fa-github"/>
     </div>
   );
+  }
 }
 
 export default App;
