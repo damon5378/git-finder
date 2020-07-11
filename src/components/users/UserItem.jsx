@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class UserItem extends Component {
+const UserItem = (props) => {
 
     // state = {
     //     id: 'id',
@@ -9,21 +9,19 @@ class UserItem extends Component {
     //     html_url: 'https://github.com/mojombo'
     // }
 
-    render() {
         return (
             <div className='card text-center'>
                 <img 
-                    src={this.props.user.avatar_url} 
+                    src={props.user.avatar_url} 
                     alt="" 
                     className="center"
                     style={{ width: '60px' }}/>
-                <h3>{this.props.user.login}</h3>
+                <h3>{props.user.login}</h3>
                 <div>
-                    <a href={this.props.user.html_url} className="btn btn-dark btn-sm my-3">More</a>
+                    <a href={props.user.html_url} className="btn btn-dark btn-sm my-3">More</a>
                 </div>
             </div>
         )
-    }
 }
 
 export default UserItem
