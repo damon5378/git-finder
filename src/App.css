@@ -29,3 +29,18 @@
 .close{
     outline: none;
 }
+.nav-link{
+    list-style: none;
+    display: flex;
+    
+}
+
+.nav-link__item{
+    margin-left: 35px;
+    color: white;
+    transition: color .3s linear;
+}
+.nav-link__item:hover{
+    text-decoration: none;
+    color: aqua;
+}
