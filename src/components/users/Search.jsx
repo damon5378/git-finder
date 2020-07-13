@@ -33,6 +33,10 @@ class Search extends Component {
                         onChange={this.onChange}/>
                     <input type="submit" value="Search" className="btn btn-dark btn-block"/>
                 </form>
+                {
+                    this.props.showClear && <button onClick={this.props.clearUsers} className="btn btn-info btn-block">Clear</button>
+                }
+                
             </div>
         )
     }
