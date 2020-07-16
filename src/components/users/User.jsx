@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Loader from "../layout/Loader";
 import { Link } from "react-router-dom";
 import { Repos } from "../repos/Repos";
+import GithubContext from "../../context/github/GithubContext";
 
 const User = (props) => {
+  const githubContext = useContext(GithubContext)
+  const {user, getUser, loading} = githubContext;
   useEffect(() => {
-    props.getUser(props.match.params.login);
+    getUser(props.match.params.login);
     props.getUserRepos(props.match.params.login);
     // eslint-disable-next-line
   }, []);
+
   
     const {
       name,
@@ -24,10 +28,10 @@ const User = (props) => {
       public_repos,
       public_gists,
       hireable,
-    } = props.user;
+    } = user;
 
 
-    if (props.loading) return <Loader />;
+    if (loading) return <Loader />;
     return (
       <>
         <Link to="/git-finder" className="btn btn-light back-to-search">

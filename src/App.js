@@ -8,10 +8,9 @@ import Search from "./components/users/Search";
 import { Alert } from "./components/layout/Alert";
 import { About } from "./components/pages/About";
 import User from "./components/users/User";
+import GithubState from './context/github/GithubState';
 
 const App = () => {
-  const [users, setUsers] = useState([]);
-  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
   const [repos, setRepos] = useState([]);
@@ -29,29 +28,6 @@ const App = () => {
   //   })
   // }
 
-  const searchUsers = async (text) => {
-    setLoading(true);
-
-    const response = await axios.get(
-      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    setUsers(response.data.items);
-    setLoading(false);
-  };
-
-  // Get single GitHub user
-
-  const getUser = async (username) => {
-    setLoading(false);
-
-    const response = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    setUser(response.data);
-    setLoading(false);
-  }
 
   // Get users repos
 
@@ -66,15 +42,6 @@ const App = () => {
     setLoading(false);
   }
 
-  const clearUsers = () => {
-    setUsers([]);
-    setLoading(false);
-
-    // this.setState({
-    //   users: [],
-    //   loading: false,
-    // });
-  };
 
   const showAlert = (msg, type) => {
     setAlert({msg, type});
@@ -87,9 +54,8 @@ const App = () => {
   //   })
   // }
 
-    let showClear = users.length > 0 ? true : false;
-
     return (
+      <GithubState>
         <Router>
         <div className="App">
           <Navbar title="Github Finder" icon="fab fa-github" />
@@ -99,31 +65,25 @@ const App = () => {
               <Route exact path='/git-finder' render={props => (
                 <Fragment>
                 <Search
-                  searchUsers={searchUsers}
-                  clearUsers={clearUsers}
-                  showClear={showClear}
+                  // clearUsers={clearUsers}
+                  // showClear={showClear}
                   showAlert={showAlert}
               />
-              <Users
-                loading={loading}
-                users={users}
-              />
+              <Users />
                 </Fragment>
               )} />
               <Route exact path='/git-finder/about' component={About} />
               <Route exact path='/git-finder/user/:login' render={props => (
                 <User 
-                  {...props} 
-                  getUser={getUser} 
+                  {...props}  
                   getUserRepos={getUserRepos} 
-                  user={user} 
-                  repos={repos}
-                  loading={loading} />
+                  repos={repos} />
               )} />
             </Switch>
           </div>
         </div>
         </Router>
+        </GithubState>
     );
 }
 
