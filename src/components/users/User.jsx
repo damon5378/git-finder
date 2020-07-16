@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import Loader from "../layout/Loader";
 import { Link } from "react-router-dom";
 import { Repos } from "../repos/Repos";
 
-class User extends Component {
-  componentDidMount() {
-    this.props.getUser(this.props.match.params.login);
-    this.props.getUserRepos(this.props.match.params.login);
-  }
-
-  render() {
+const User = (props) => {
+  useEffect(() => {
+    props.getUser(props.match.params.login);
+    props.getUserRepos(props.match.params.login);
+    // eslint-disable-next-line
+  }, []);
+  
     const {
       name,
       company,
@@ -24,11 +24,10 @@ class User extends Component {
       public_repos,
       public_gists,
       hireable,
-    } = this.props.user;
+    } = props.user;
 
-    const { loading } = this.props;
 
-    if (loading) return <Loader />;
+    if (props.loading) return <Loader />;
     return (
       <>
         <Link to="/git-finder" className="btn btn-light back-to-search">
@@ -84,10 +83,9 @@ class User extends Component {
           <div className='badge badge-info own-badge'>Public Repository: {public_repos}</div>
           <div className='badge badge-dark own-badge'>Public Gists: {public_gists}</div>
         </div>
-        <Repos repos={this.props.repos} />
+        <Repos repos={props.repos} />
       </>
     );
-  }
 }
 
 export default User;
