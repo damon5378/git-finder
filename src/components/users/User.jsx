@@ -6,10 +6,10 @@ import GithubContext from "../../context/github/GithubContext";
 
 const User = (props) => {
   const githubContext = useContext(GithubContext)
-  const {user, getUser, loading} = githubContext;
+  const {user, getUser, getUserRepos, loading} = githubContext;
   useEffect(() => {
     getUser(props.match.params.login);
-    props.getUserRepos(props.match.params.login);
+    getUserRepos(props.match.params.login);
     // eslint-disable-next-line
   }, []);
 
